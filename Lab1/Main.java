@@ -47,8 +47,7 @@ public class Main {
             else if(num1rom == true){
                 System.out.println("Roman");
             }
-//== num2rom) 
-//num2arab) ==
+            
             else if(num1arab ==  true){
                 System.out.println("Arab");
             }
