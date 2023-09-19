@@ -20,13 +20,13 @@ public class Main {
         for (int i = 0; i < Input.length(); i++) {
             InpChar[i] = Input.charAt(i);
             if (InpChar[i] == '+') {
-                method = '+'; splt = "+";
+                method = '+'; splt = "\\+";
             }
             if (InpChar[i] == '-') {
                 method = '-'; splt = "-";
             }
             if (InpChar[i] == '*') {
-                method = '*'; splt = "*";
+                method = '*'; splt = "\\*";
             }
             if (InpChar[i] == '/') {
                 method = '/'; splt = "/";
@@ -40,15 +40,16 @@ public class Main {
             boolean num2arab = NumberIndentifier.isArabicNumber(numbers[1]);
             
 
-            if(num1rom != num2rom || num1arab != num2arab){
+            if((num1rom != num2rom) || (num1arab != num2arab)){
                 System.out.println("Неверный формат чисел.");
             }
 
-            else if((num1rom == num2rom) == true){
+            else if(num1rom == true){
                 System.out.println("Roman");
             }
-
-            else if((num1arab == num2arab) == true){
+//== num2rom) 
+//num2arab) ==
+            else if(num1arab ==  true){
                 System.out.println("Arab");
             }
         }
