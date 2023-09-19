@@ -1,6 +1,7 @@
 package HW2;
 import java.util.Scanner;
 
+// Переворот числа
 public class HomeWork2
 {
     public static void main(String[] args)
