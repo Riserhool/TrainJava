@@ -14,22 +14,26 @@ public class Main {
         System.out.println("Введите выражение:");
         String Input = in.nextLine();
         char[] InpChar = new char[10];
-        char method;
+        char method = ' ';
         String splt = " ";
 
         for (int i = 0; i < Input.length(); i++) {
             InpChar[i] = Input.charAt(i);
             if (InpChar[i] == '+') {
-                method = '+'; splt = "\\+";
+                method = '+';
+                splt = "\\+";
             }
             if (InpChar[i] == '-') {
-                method = '-'; splt = "-";
+                method = '-';
+                splt = "-";
             }
             if (InpChar[i] == '*') {
-                method = '*'; splt = "\\*";
+                method = '*';
+                splt = "\\*";
             }
             if (InpChar[i] == '/') {
-                method = '/'; splt = "/";
+                method = '/';
+                splt = "/";
             }
         }
             String[] numbers = Input.split(splt);
@@ -46,10 +50,21 @@ public class Main {
 
             else if(num1rom == true){
                 System.out.println("Roman");
+
+         //       RomanCalcs
             }
-            
+
             else if(num1arab ==  true){
                 System.out.println("Arab");
+                NumberIndentifier n = new NumberIndentifier();
+                int num1 = Integer.parseInt(numbers[0]);
+                int num2 = Integer.parseInt(numbers[1]);                
+             //   int num1 = n.AlterationtoArabic(numbers[0]);
+             //   System.out.println(num1);
+             //   int num2 = n.AlterationtoArabic(numbers[1]);
+             //   System.out.println(num2);
+                ArabicCalcs answer = new ArabicCalcs(method, num1, num2);
+               
             }
         }
     }

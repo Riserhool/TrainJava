@@ -52,8 +52,6 @@ public class NumberIndentifier {
         }
 
         
-
-
     public static boolean isArabicNumber(String number) {
     switch (number){
         case "1":
@@ -102,4 +100,19 @@ public class NumberIndentifier {
         }
     
 }
+
+
+    public int AlterationtoArabic(String number)
+    {
+        int output = 0;
+            for(int i = 0; i < 10; i++)
+            {
+                String n = String.valueOf(i);
+                if(number == n){
+                    output++;
+                }
+            }
+        return output;
+    }
+    
 }
