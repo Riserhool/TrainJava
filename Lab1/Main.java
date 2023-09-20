@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args)
     {
         Scanner in = new Scanner(System.in);
-        System.out.println("Введите выражение:");
+        System.out.println("Ввод:");
         String Input = in.nextLine();
         char[] InpChar = new char[10];
         char method = ' ';
@@ -55,7 +55,7 @@ public class Main {
             }
 
             else if(num1arab ==  true){
-                System.out.println("Arab");
+             //   System.out.println("Arab");
                 NumberIndentifier n = new NumberIndentifier();
                 int num1 = Integer.parseInt(numbers[0]);
                 int num2 = Integer.parseInt(numbers[1]);                

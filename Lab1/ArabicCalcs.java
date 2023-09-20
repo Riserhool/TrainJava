@@ -12,23 +12,24 @@ public class ArabicCalcs extends Calculations {
         {
             
             out = addition(number1, number2);
-            System.out.println(out);
+            
         }
         else if(operation == '-')
         {
             out = substraction(number1, number2);
-            System.out.println(out);
+
         }
         else if(operation == '/')
         {
             out = division(number1, number2);
-            System.out.println(out);
+
         }
         else if(operation == '*')
         {
             out = multiplication(number1, number2);
-            System.out.println(out);
+
         }
+        System.out.println("Вывод:" + out);
     }
 
     
