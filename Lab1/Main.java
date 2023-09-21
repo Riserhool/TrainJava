@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args)
     {
         Scanner in = new Scanner(System.in);
-        System.out.println("Ввод:");
+        System.out.print("Ввод: ");
         String Input = in.nextLine();
         char[] InpChar = new char[10];
         char method = ' ';
@@ -49,9 +49,9 @@ public class Main {
             }
 
             else if(num1rom == true){
-                System.out.println("Roman");
+        //        System.out.println("Roman");
 
-         //       RomanCalcs
+                RomanCalcs answer = new RomanCalcs(method, numbers[0], numbers[1]);
             }
 
             else if(num1arab ==  true){
