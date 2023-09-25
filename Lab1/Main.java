@@ -16,7 +16,7 @@ public class Main {
         char[] InpChar = new char[10];
         char method = ' ';
         String splt = " ";
-
+// Совместить сплит и метод
         for (int i = 0; i < Input.length(); i++) {
             InpChar[i] = Input.charAt(i);
             if (InpChar[i] == '+') {
@@ -55,17 +55,17 @@ public class Main {
             }
 
             else if(num1arab ==  true){
-             //   System.out.println("Arab");
+
                 NumberIndentifier n = new NumberIndentifier();
                 int num1 = Integer.parseInt(numbers[0]);
                 int num2 = Integer.parseInt(numbers[1]);                
-             //   int num1 = n.AlterationtoArabic(numbers[0]);
-             //   System.out.println(num1);
-             //   int num2 = n.AlterationtoArabic(numbers[1]);
-             //   System.out.println(num2);
-                ArabicCalcs answer = new ArabicCalcs(method, num1, num2);
-               
+
+               ArabicCalcs answer = new ArabicCalcs(method, num1, num2);
+               int answer2 = answer.addition(num1, num2);
+               System.out.println(answer2);
             }
         }
+        //сделать вывод данных из решений  здесь
+        //работа с пробелом
     }
 

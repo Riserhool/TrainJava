@@ -3,7 +3,7 @@ package Lab1;
 public class NumberIndentifier {
 
     public static boolean isRomanNumber(String number){
-    switch (number){
+    switch (number.toUpperCase()){
             case "I":
                 return true;
         //               break;

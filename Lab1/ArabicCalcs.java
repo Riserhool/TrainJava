@@ -31,7 +31,7 @@ public class ArabicCalcs extends Calculations {
         }
         System.out.println("Вывод:" + out);
     }
-
+// оперируем только данными, решения пишем не в конструкторе
     
 
 
