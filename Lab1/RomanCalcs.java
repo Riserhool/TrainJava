@@ -6,8 +6,8 @@ public class RomanCalcs extends Calculations {
     int first = 0;
     int second = 0;
 
-    public RomanCalcs(char operation, String number1, String number2){
-    //    this.operation = operation;
+    public RomanCalcs(String number1, String number2){
+
         switch (number1){
             case "I":
             {
@@ -114,32 +114,6 @@ public class RomanCalcs extends Calculations {
             }
             default: {break;}
         }
-
-        if(operation == '+')
-        {
-            out = addition(first, second);
-        }
-        else if(operation == '-')
-        {
-            out = substraction(first, second);
-        }
-        else if(operation == '/')
-        {
-            out = division(first, second);
-        }
-        else if(operation == '*')
-        {
-            out = multiplication(first, second);
-        }
-
-        if(out < 0){
-            System.out.println("Вывод:Неположительный результат");
-        }
-        else{
-            String c = romanSolution(out);
-            System.out.println("Вывод:" + c);
-        }
-        
     }
 
     public String romanSolution(int arabNumeral) {

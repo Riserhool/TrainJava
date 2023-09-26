@@ -2,6 +2,8 @@ package Lab1;
 
 public abstract class Calculations {
 
+
+    
     public int addition(int a, int b)
     {
     int c = a + b;
