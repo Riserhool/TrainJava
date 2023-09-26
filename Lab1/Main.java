@@ -13,6 +13,10 @@ public class Main {
         Scanner in = new Scanner(System.in);
         System.out.print("Ввод: ");
         String Input = in.nextLine();
+        if(Input.length() > 10){
+            System.out.println("Неверный формат чисел!");
+            System.exit(0);
+        }
         char[] InpChar = new char[10];
 
         String splt = " ";
@@ -33,10 +37,18 @@ public class Main {
                 splt = "/";
             }
         }
+                    if(splt == " "){
+                    System.out.println("Отсутствет знак операции!");
+                    System.exit(0);
+                }
 //Разделение вводимой строки на 2 значения, избавляемся от пробелов
             String[] numbers = Input.split(splt);
             numbers[0] = numbers[0].trim();
             numbers[1] = numbers[1].trim();
+            if(numbers[0].length() > 2 || numbers[1].length() > 2){
+                System.out.println("Неверный формат чисел!");
+                System.exit(0);
+            }
 
 //Проверка на Араб\Римские
             boolean num1rom = NumberIndentifier.isRomanNumber(numbers[0]);
@@ -72,6 +84,7 @@ public class Main {
                 {
                     out = answer.multiplication(answer.first, answer.second);
                 }
+
         
                 if(out < 0){
                     System.out.println("Вывод:Неположительный результат");
@@ -109,7 +122,7 @@ public class Main {
                     
 
                 }
-                else if(splt == "*")
+                else if(splt == "\\*")
                 {
                     System.out.println("Вывод: " + answer.multiplication(num1, num2)); 
                 }
