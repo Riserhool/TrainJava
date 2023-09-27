@@ -1,4 +1,4 @@
-// package Lect5;
+package Lect5;
 
 // import java.util.ArrayList;
 // import java.util.List;
@@ -18,3 +18,7 @@
 //         System.out.println();
 //     }
 // }
+
+public class MyOptional<T>{
+    
+}
