@@ -2,6 +2,8 @@ package Lab1;
 
 public abstract class Calculations {
 
+
+    
     public int addition(int a, int b)
     {
     int c = a + b;
@@ -22,7 +24,8 @@ public abstract class Calculations {
 
     public int division(int a, int b)
     {
-    int c = a / b;
+    double d = Math.floor(a/b);
+    int c = (int) d;
     return c;
     }
 }

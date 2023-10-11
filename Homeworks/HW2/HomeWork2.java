@@ -9,6 +9,7 @@ public class HomeWork2
         Scanner in = new Scanner(System.in);
         System.out.printf("Введите число: ");
         int num = in.nextInt();
+        in.close();
         int count = 0;
         int length = 1;
         for(count = num; count > 10; count = count / 10)
@@ -26,6 +27,6 @@ public class HomeWork2
 
 
         System.out.print("\n");
-        in.close();
+
     }
 }
