@@ -1,3 +1,20 @@
+<<<<<<< Updated upstream:deque/src/test/java/com/mpei/TripletTests.java
+=======
+
+package com.deque;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import java.util.Deque;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
+>>>>>>>> 2963eb1 (Com):Labs/Lab2/deque/src/test/java/com/deque/TripletTests.java
+>>>>>>> Stashed changes:Labs/Lab2/deque/src/test/java/com/deque/TripletTests.java
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream:deque/src/main/java/com/mpei/TripletDeque.java
 package com.mpei;
+=======
+
+>>>>>>> Stashed changes:Labs/Lab2/deque/src/main/java/com/deque/TripletDeque.java
 
 import java.util.*;
 
