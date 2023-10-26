@@ -1,3 +1,5 @@
+package ru.mpei.impl;
+
 import ru.mpei.Containerable;
 
 import java.util.Collection;

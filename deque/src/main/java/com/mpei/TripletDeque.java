@@ -7,7 +7,7 @@ import java.util.Deque;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class MyTripletQueueImpl<T> implements Deque<T>, Containerable {
+public class TripletDeque<T> implements Deque<T>, Containerable {
 
     private MyContainer<T> firstContainer;
     private MyContainer<T> lastContainer;
