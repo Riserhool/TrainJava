@@ -1,4 +1,60 @@
 -------------------------------------------------------------------------------
 Test set: com.mpei.TripletTests
 -------------------------------------------------------------------------------
-Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.101 s - in com.mpei.TripletTests
+Tests run: 15, Failures: 0, Errors: 14, Skipped: 0, Time elapsed: 0.102 s <<< FAILURE! - in com.mpei.TripletTests
+testAddLast  Time elapsed: 0.029 s  <<< ERROR!
+java.lang.NullPointerException
+	at com.mpei.TripletTests.testAddLast(TripletTests.java:113)
+
+addTest2  Time elapsed: 0 s  <<< ERROR!
+java.lang.NullPointerException
+	at com.mpei.TripletTests.addTest2(TripletTests.java:42)
+
+addTest  Time elapsed: 0 s  <<< ERROR!
+java.lang.NullPointerException
+	at com.mpei.TripletTests.addTest(TripletTests.java:25)
+
+testIteratorNoMoreItem  Time elapsed: 0 s  <<< ERROR!
+java.lang.NullPointerException
+	at com.mpei.TripletTests.testIteratorNoMoreItem(TripletTests.java:224)
+
+testRemoveFirst  Time elapsed: 0 s  <<< ERROR!
+java.lang.NullPointerException
+	at com.mpei.TripletTests.testRemoveFirst(TripletTests.java:145)
+
+testAddFirst  Time elapsed: 0 s  <<< ERROR!
+java.lang.NullPointerException
+	at com.mpei.TripletTests.testAddFirst(TripletTests.java:95)
+
+holeTest  Time elapsed: 0.024 s  <<< ERROR!
+java.lang.NullPointerException
+	at com.mpei.TripletTests.holeTest(TripletTests.java:257)
+
+testRemoveLast  Time elapsed: 0 s  <<< ERROR!
+java.lang.NullPointerException
+	at com.mpei.TripletTests.testRemoveLast(TripletTests.java:169)
+
+testIsEmptyAfterAddRemoveFirst  Time elapsed: 0.002 s  <<< ERROR!
+java.lang.NullPointerException
+	at com.mpei.TripletTests.testIsEmptyAfterAddRemoveFirst(TripletTests.java:74)
+
+removeTest  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.NullPointerException
+	at com.mpei.TripletTests.removeTest(TripletTests.java:62)
+
+iterTest  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.NullPointerException
+	at com.mpei.TripletTests.iterTest(TripletTests.java:51)
+
+testIterator  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.NullPointerException
+	at com.mpei.TripletTests.testIterator(TripletTests.java:194)
+
+removeContainerTest  Time elapsed: 0 s  <<< ERROR!
+java.lang.NullPointerException
+	at com.mpei.TripletTests.removeContainerTest(TripletTests.java:272)
+
+testQueueBehavior  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.NullPointerException
+	at com.mpei.TripletTests.testQueueBehavior(TripletTests.java:246)
+
