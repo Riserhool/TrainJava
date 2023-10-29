@@ -188,14 +188,18 @@ public class TripletDeque<T> implements Deque<T>, Containerable {
     @Override
     public T pollLast() {
         T poll;
-        poll = (T) lastContainer.data[lastContainer.lastIndex - 1];
-        this.lastContainer.data[lastContainer.lastIndex - 1] = null;
-        if (lastContainer.getDataCount() == 1 && firstContainer.prev != null) {
-            lastContainer = lastContainer.prev;
-        } else {
-            lastContainer.lastIndex--;
+        if( lastContainer.data[lastContainer.lastIndex - 1]!=null)
+        {
+            poll = (T)lastContainer.data[lastContainer.lastIndex - 1];
+            this.lastContainer.data[lastContainer.lastIndex - 1] = null;
+            if (lastContainer.lastIndex - 1 == 0 && lastContainer.prev != null) {
+                lastContainer = lastContainer.prev;
+            } else {
+                lastContainer.lastIndex--;
+            }
+            return poll;
         }
-        return poll;
+        return null;
     }
 
     @Override

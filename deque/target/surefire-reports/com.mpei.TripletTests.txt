@@ -1,16 +1,12 @@
 -------------------------------------------------------------------------------
 Test set: com.mpei.TripletTests
 -------------------------------------------------------------------------------
-Tests run: 15, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.092 s <<< FAILURE! - in com.mpei.TripletTests
-testIteratorNoMoreItem  Time elapsed: 0.009 s  <<< ERROR!
+Tests run: 15, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.096 s <<< FAILURE! - in com.mpei.TripletTests
+testIteratorNoMoreItem  Time elapsed: 0.007 s  <<< ERROR!
 java.lang.NullPointerException
 	at com.mpei.TripletTests.testIteratorNoMoreItem(TripletTests.java:224)
 
-testRemoveLast  Time elapsed: 0.001 s  <<< ERROR!
-java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 5
-	at com.mpei.TripletTests.testRemoveLast(TripletTests.java:185)
-
-testIterator  Time elapsed: 0.003 s  <<< ERROR!
+testIterator  Time elapsed: 0.002 s  <<< ERROR!
 java.lang.NullPointerException
 	at com.mpei.TripletTests.testIterator(TripletTests.java:194)
 
