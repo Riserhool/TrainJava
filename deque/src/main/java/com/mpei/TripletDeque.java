@@ -11,13 +11,16 @@ public class TripletDeque<T> implements Deque<T>, Containerable {
     private MyContainer<T> lastContainer;
 
     private final int volume = 1000;
-    // private final int capacity = 5;
+    private final int capacity = 5;
 
     @Override
     public Object[] getContainerByIndex(int cIndex) {
         MyContainer<T> ref = firstContainer;
         int counters = 0;
         while (cIndex != counters) {
+            if(ref.next ==null){
+                return null;
+            }
             ref = ref.next;
             counters++;
         }
@@ -212,7 +215,7 @@ public class TripletDeque<T> implements Deque<T>, Containerable {
         // }
         Object datum = this.lastContainer.data[this.lastContainer.lastIndex - 1];
         return (T) datum;
-        // return (T)lastContainer.data[lastContainer.lastIndex - 1];
+
     }
 
     @Override
@@ -391,7 +394,44 @@ public class TripletDeque<T> implements Deque<T>, Containerable {
 
     @Override
     public Iterator<T> iterator() {
-        return null;
+        return new Itor();
+    }
+    private class Itor implements Iterator<T> {
+        int cursor;
+        MyContainer<T> curretCont = firstContainer;
+        MyContainer<T> retCont;
+        int dequeCursor;
+        int lastRet = -1; // index of last element returned; -1 if no such
+        @Override
+        public boolean hasNext() {
+            return dequeCursor < size() && size()!=0;
+        }
+        @Override
+        public T next() {
+            // TODO Auto-generated method stub
+            if(hasNext()){
+                if(cursor == 0 && curretCont == firstContainer){
+                    while(curretCont.data[cursor]==null){
+                        cursor++;
+                    }
+                }
+                lastRet = cursor;
+                retCont = curretCont;
+                if(cursor == capacity-1){
+                    curretCont = curretCont.next;
+                    cursor =0;
+                    dequeCursor++;
+                } else{
+                    cursor++;
+                    dequeCursor++;
+                }
+                return (T)retCont.data[lastRet];
+            }
+            else{
+                throw new NoSuchElementException();
+            }
+            // throw new UnsupportedOperationException("Unimplemented method 'next'");
+        }
     }
 
     @Override

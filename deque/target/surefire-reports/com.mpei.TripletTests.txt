@@ -1,28 +1,16 @@
 -------------------------------------------------------------------------------
 Test set: com.mpei.TripletTests
 -------------------------------------------------------------------------------
-Tests run: 15, Failures: 0, Errors: 6, Skipped: 0, Time elapsed: 0.094 s <<< FAILURE! - in com.mpei.TripletTests
-testIteratorNoMoreItem  Time elapsed: 0.008 s  <<< ERROR!
+Tests run: 15, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.092 s <<< FAILURE! - in com.mpei.TripletTests
+testIteratorNoMoreItem  Time elapsed: 0.009 s  <<< ERROR!
 java.lang.NullPointerException
 	at com.mpei.TripletTests.testIteratorNoMoreItem(TripletTests.java:224)
 
-testRemoveLast  Time elapsed: 0.012 s  <<< ERROR!
+testRemoveLast  Time elapsed: 0.001 s  <<< ERROR!
 java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 5
 	at com.mpei.TripletTests.testRemoveLast(TripletTests.java:185)
 
-removeTest  Time elapsed: 0.002 s  <<< ERROR!
-java.lang.NullPointerException
-	at com.mpei.TripletTests.removeTest(TripletTests.java:65)
-
-iterTest  Time elapsed: 0.004 s  <<< ERROR!
-java.lang.NullPointerException
-	at com.mpei.TripletTests.iterTest(TripletTests.java:54)
-
-testIterator  Time elapsed: 0.001 s  <<< ERROR!
+testIterator  Time elapsed: 0.003 s  <<< ERROR!
 java.lang.NullPointerException
 	at com.mpei.TripletTests.testIterator(TripletTests.java:194)
-
-removeContainerTest  Time elapsed: 0.001 s  <<< ERROR!
-java.lang.NullPointerException
-	at com.mpei.TripletTests.removeContainerTest(TripletTests.java:288)
 
