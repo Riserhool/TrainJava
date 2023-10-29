@@ -1,4 +1,48 @@
 -------------------------------------------------------------------------------
 Test set: com.mpei.TripletTests
 -------------------------------------------------------------------------------
-Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.101 s - in com.mpei.TripletTests
+Tests run: 15, Failures: 2, Errors: 9, Skipped: 0, Time elapsed: 0.148 s <<< FAILURE! - in com.mpei.TripletTests
+testAddLast  Time elapsed: 0.036 s  <<< ERROR!
+java.util.NoSuchElementException
+	at com.mpei.TripletTests.testAddLast(TripletTests.java:117)
+
+testIteratorNoMoreItem  Time elapsed: 0.003 s  <<< ERROR!
+java.lang.NullPointerException
+	at com.mpei.TripletTests.testIteratorNoMoreItem(TripletTests.java:224)
+
+testRemoveFirst  Time elapsed: 0.001 s  <<< ERROR!
+java.util.NoSuchElementException
+	at com.mpei.TripletTests.testRemoveFirst(TripletTests.java:146)
+
+testAddFirst  Time elapsed: 0.002 s  <<< ERROR!
+java.util.NoSuchElementException
+	at com.mpei.TripletTests.testAddFirst(TripletTests.java:99)
+
+testRemoveLast  Time elapsed: 0.001 s  <<< ERROR!
+java.util.NoSuchElementException
+	at com.mpei.TripletTests.testRemoveLast(TripletTests.java:170)
+
+testIsEmptyAfterAddRemoveFirst  Time elapsed: 0.004 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <false> but was: <true>
+	at com.mpei.TripletTests.testIsEmptyAfterAddRemoveFirst(TripletTests.java:76)
+
+removeTest  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.NullPointerException
+	at com.mpei.TripletTests.removeTest(TripletTests.java:65)
+
+iterTest  Time elapsed: 0.003 s  <<< ERROR!
+java.lang.NullPointerException
+	at com.mpei.TripletTests.iterTest(TripletTests.java:54)
+
+testIterator  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.NullPointerException
+	at com.mpei.TripletTests.testIterator(TripletTests.java:194)
+
+removeContainerTest  Time elapsed: 0.004 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
+	at com.mpei.TripletTests.removeContainerTest(TripletTests.java:290)
+
+testQueueBehavior  Time elapsed: 0 s  <<< ERROR!
+java.util.NoSuchElementException
+	at com.mpei.TripletTests.testQueueBehavior(TripletTests.java:250)
+

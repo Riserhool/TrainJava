@@ -1,158 +1,156 @@
 package com.mpei;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Deque;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-public class TripletDeque<E> implements Deque<E>, Containerable {
-    private class Container<E> {
-        private Container<E> next;
-        private Container<E> prev;
-        private Object[] elementData;
+public class TripletDeque<T> implements Deque<T>, Containerable {
 
-        public Container(int initialCapacity, Container<E> prev, Container<E> next) {
-            this.elementData = new Object[initialCapacity];
-            this.prev = prev;
-            this.next = next;
-        }
-
-        public int size() {
-            int size = 0;
-            for (Object o : elementData) {
-                if (o != null) {
-                    size++;
-                }
-            }
-            return size;
-        }
-
-        public void add(Object o) {
-            if (o != null) {
-                int i = 0;
-                boolean flg = true;
-                while (flg) {
-                    if (elementData[i] == null) {
-                        elementData[i] = o;
-                        flg = false;
-                    }
-                    i++;
-                }
-            }
-        }
-
-        public void addAll(E[] elements) {
-            for (E e : elements) {
-                add(e);
-            }
-        }
-
-        public E get(int index) {
-            return (E) elementData[index];
-        }
-
-        public void printContainer() {
-            System.out.print(Arrays.toString(elementData) + " ");
-        }
-
-        public Container<E> getNext() {
-            return next;
-        }
-
-        public void setNext(Container<E> next) {
-            this.next = next;
-        }
-
-        public Container<E> getPrev() {
-            return prev;
-        }
-
-        public void setPrev(Container<E> prev) {
-            this.prev = prev;
-        }
-
-        public E[] getElementData() {
-            return (E[]) elementData;
-        }
-    }
-
-    private Container<E> first;
-    private Container<E> last;
-    private int initialCapacity;
-    private int queueVolume;
-    private int amountOfElements;
-
-    public TripletDeque() {
-        Container<E> container = new Container<>(5, null, null);
-        this.first = container;
-        this.last = container;
-        this.initialCapacity = 5;
-        this.queueVolume = 1000;
-        this.amountOfElements = 0;
-    }
-
-    public TripletDeque(int initialCapacity, int queueVolume) {
-        Container<E> container = new Container<>(initialCapacity, null, null);
-        this.first = container;
-        this.last = container;
-        this.initialCapacity = initialCapacity;
-        this.queueVolume = queueVolume;
-        this.amountOfElements = 0;
-    }
+    private MyContainer<T> firstContainer = null;
+    private MyContainer<T> lastContainer = null;
+    // private final int volume;
+    // private final int capacity;
+    private final int volume = 1000;
+    private final int capacity = 5;
 
     @Override
     public Object[] getContainerByIndex(int cIndex) {
-        int i = 0;
-        for (Container<E> x = first; x != null; x = x.getNext()) {
-            if (i == cIndex) {
-                return x.getElementData();
-            }
-            i++;
+        MyContainer<T> ref = firstContainer;
+        int counters = 0;
+        while (cIndex!=counters){
+            ref = ref.next;
+            counters++;
         }
-        return null;
+        return ref.data;
+    }
+
+    private class MyContainer<T> {
+        MyContainer<T> next; //-link to next container
+        MyContainer<T> prev; //-link to previous container
+        private int capacity, iniIndex, lastIndex;
+        private Object[] data;
+
+        public MyContainer(int capacity) {
+            this.capacity = capacity;
+            this.data = new Object[capacity];
+            // this.next = null;
+            // this.prev = null;
+        }
+        public MyContainer(){
+            this(5);
+        }
+
+        public boolean addFirst(T object){
+            if (this.data[0]==null){
+                for (int i = 0; i < this.capacity; i++) {
+                    if(this.data[i] != null){
+                        this.data[i-1] = object;
+                        this.iniIndex --;
+                        return true;
+                    }
+                    if(i == this.capacity-1){
+                        this.data[i] = object;
+                        this.iniIndex = 5;
+                        this.lastIndex = 5;
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public boolean addLast(T object){
+            if (this.data[capacity-1]==null){
+                for (int i = capacity-1; i >= 0; i--) {
+                    if(this.data[i] != null){
+                        this.data[i+1] = object;
+                        this.lastIndex ++;
+                        return true;
+                    }
+                    if(i == 0){
+                        this.data[i] = object;
+                        this.iniIndex = 1;
+                        this.lastIndex = 1;
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public int getDataCount(){
+            return lastIndex -iniIndex;
+        }
+    }
+
+    // public TripletDeque() {
+    //         this.capacity = 5;
+    //         this.volume = 1000;
+    //         this.firstContainer = new MyContainer<T>();
+    //         this.lastContainer = firstContainer;
+    //     }
+    // public TripletDeque(int volume){
+    //     this.volume = volume;
+    //     this.capacity = 5;
+    //     this.firstContainer = new MyContainer<T>();
+    //     this.lastContainer = firstContainer;
+    // }
+    // public TripletDeque(int volume, int capacity){
+    //     this.volume = volume;
+    //     this.capacity = 5;
+    //     this.firstContainer = new MyContainer<>();
+    //     this.lastContainer = firstContainer;
+    // }
+
+    @Override
+    public void addFirst(T t) {
+        if(t == null){
+            throw new NullPointerException();
+        }        
+        if (firstContainer == null){
+            firstContainer = new MyContainer<>();
+            lastContainer = firstContainer;
+        }
+        if (size() > volume){
+            throw new IllegalStateException();
+        }
+        boolean res = firstContainer.addFirst(t);
+        if (!res){
+            MyContainer<T> newFirstContainer = new MyContainer<>();
+            newFirstContainer.next = firstContainer; //-giving link to next container for new one(to the right-previous)
+            firstContainer.prev = newFirstContainer; //-giving link to prev container for old one(to the left-added)
+            firstContainer = newFirstContainer; //-changing value for first container
+            firstContainer.addFirst(t); //-adding value to new first container
+        }
     }
 
     @Override
-    public void addFirst(E e) {
-        checkAmountOfElements();
-        checkNullInputParameter(e);
-        if (first.size() < initialCapacity) {
-            Container<E> box = new Container<>(initialCapacity, null, first.getNext());
-            box.add(e);
-            box.addAll(first.getElementData());
-            if (first.equals(last)) {
-                last = box;
-            }
-            if (first.getNext() != null) {
-                first.getNext().setPrev(box);
-            }
-            first = box;
-            amountOfElements++;
-        } else {
-            Container<E> box = new Container<>(initialCapacity, null, first);
-            first.setPrev(box);
-            first = box;
-            addFirst(e);
+    public void addLast(T t) {
+        if(t == null){
+            throw new NullPointerException();
+        }
+        if (lastContainer == null){
+            firstContainer = new MyContainer<>();
+            lastContainer = firstContainer;
+        }
+        if (size() > volume){
+            throw new IllegalStateException();
+        }
+        boolean res = lastContainer.addLast(t);
+        if (!res){
+            MyContainer<T> newLastContainer = new MyContainer<>();
+            newLastContainer.prev = lastContainer;
+            lastContainer.next = newLastContainer;
+            lastContainer = newLastContainer;
+            this.addLast(t);
         }
     }
 
     @Override
-    public void addLast(E e) {
-        checkAmountOfElements();
-        checkNullInputParameter(e);
-        if (last.size() < initialCapacity) {
-            last.add(e);
-            amountOfElements++;
-        } else {
-            Container<E> box = new Container<>(initialCapacity, last, null);
-            last.setNext(box);
-            last = box;
-            addLast(e);
-        }
-    }
-
-    @Override
-    public boolean offerFirst(E e) {
-        checkNullInputParameter(e);
+    public boolean offerFirst(T t) {
         try {
-            addFirst(e);
+            addFirst(t);
         } catch (IllegalStateException i) {
             return false;
         }
@@ -160,10 +158,9 @@ public class TripletDeque<E> implements Deque<E>, Containerable {
     }
 
     @Override
-    public boolean offerLast(E e) {
-        checkNullInputParameter(e);
+    public boolean offerLast(T t) {
         try {
-            addLast(e);
+            addLast(t);
         } catch (IllegalStateException i) {
             return false;
         }
@@ -171,320 +168,180 @@ public class TripletDeque<E> implements Deque<E>, Containerable {
     }
 
     @Override
-    public E removeFirst() throws NoSuchElementException {
-        if (isEmpty()) {
+    public T removeFirst() throws NoSuchElementException {
+        if (isEmpty()){
             throw new NoSuchElementException();
         }
-        E elem = first.get(0);
-        if (first.size() == 1 && first.getNext() != null) {
-            first.getNext().setPrev(null);
-            first = first.getNext();
-        } else {
-            Container<E> box = new Container<>(initialCapacity, null, first.getNext());
-            for (int i = 1; i < first.size(); i++) {
-                box.add(first.get(i));
+        else{
+            return pollFirst();
+        }
+        // return null;
+    }
+
+
+    @Override
+    public T removeLast() {
+        if(size() == 0)
+            {
+                throw new NoSuchElementException();
+            }else
+            {
+                return pollLast();
             }
-            if (first.getNext() == null) {
-                last = box;
-            } else {
-                first.getNext().setPrev(box);
-            }
-            first = box;
         }
-        amountOfElements--;
-        return elem;
+
+    @Override
+    public T pollFirst() {
+        T poll;
+        poll = (T)firstContainer.data[firstContainer.iniIndex - 1];
+        this.firstContainer.data[firstContainer.iniIndex - 1] = null;
+        if(firstContainer.getDataCount() == 0 && firstContainer.next != null){
+            firstContainer = firstContainer.next;
+        }
+        else{
+            firstContainer.iniIndex++;
+        }        
+        return poll;
+        }
+   
+
+    @Override
+    public T pollLast() {
+        T poll;
+        poll = (T)lastContainer.data[lastContainer.lastIndex - 1];
+        this.lastContainer.data[lastContainer.lastIndex - 1] = null;
+        if(lastContainer.getDataCount() == 0 && firstContainer.prev != null){
+            lastContainer = lastContainer.prev;
+        }
+        else{
+            lastContainer.lastIndex--;
+        }        
+        return poll;
+        }
+
+    @Override
+    public T getFirst() {
+        Object datum = firstContainer.data[firstContainer.iniIndex - 1];
+        return (T)firstContainer.data[firstContainer.iniIndex - 1];
     }
 
     @Override
-    public E removeLast() throws NoSuchElementException {
-        if (isEmpty()) {
-            throw new NoSuchElementException();
-        }
-        E elem = last.get(last.size() - 1);
-        if (last.size() == 1 && last.getPrev() != null) {
-            last.getPrev().setNext(null);
-            last = last.getPrev();
-        } else {
-            Container<E> box = new Container<>(initialCapacity, last.getPrev(), null);
-            for (int i = 0; i < last.size() - 1; i++) {
-                box.add(last.get(i));
-            }
-            if (last.getPrev() == null) {
-                first = box;
-            } else {
-                last.getPrev().setNext(box);
-            }
-            last = box;
-        }
-        amountOfElements--;
-        return elem;
+    public T getLast() {
+        Object datum = lastContainer.data[lastContainer.lastIndex - 1];
+        return (T)lastContainer.data[lastContainer.lastIndex - 1];
     }
 
     @Override
-    public E pollFirst() {
-        try {
-            return removeFirst();
-        } catch (NoSuchElementException n) {
-            return null;
-        }
-    }
-
-    @Override
-    public E pollLast() {
-        try {
-            return removeLast();
-        } catch (NoSuchElementException n) {
-            return null;
-        }
-    }
-
-    @Override
-    public E getFirst() throws NoSuchElementException {
-        if (!isEmpty()) {
-            return first.get(0);
-        } else {
-            throw new NoSuchElementException();
-        }
-    }
-
-    @Override
-    public E getLast() throws NoSuchElementException {
-        if (!isEmpty()) {
-            return last.get(last.size() - 1);
-        } else {
-            throw new NoSuchElementException();
-        }
-    }
-
-    @Override
-    public E peekFirst() {
+    public T peekFirst() {
         try {
             return getFirst();
-        } catch (NoSuchElementException n) {
-            return null;
+        }catch (NoSuchElementException t){
+            return  null;
         }
     }
 
     @Override
-    public E peekLast() {
+    public T peekLast() {
         try {
             return getLast();
-        } catch (NoSuchElementException n) {
-            return null;
+        }catch (NoSuchElementException t){
+            return  null;
         }
     }
 
     @Override
     public boolean removeFirstOccurrence(Object o) {
-        if (isEmpty()) {
-            return false;
+        MyContainer<T> checker = firstContainer;
+        if(getFirst().equals(o)){
+            removeFirst();
+            return true;
         }
-        checkNullInputParameter(o);
-        boolean flg = true;
-        Container<E> box = new Container<>(amountOfElements, null, null);
-        for (Container<E> x = first; x != null; x = x.getNext()) {
-            for (E e : x.getElementData()) {
-                if (o.equals(e) && flg) {
-                    flg = false;
-                    amountOfElements--;
-                } else {
-                    box.add(e);
+        else {
+        while (checker != null ){
+            for (int i = 0; i < checker.getDataCount(); i ++){
+                if (checker.data[i] != null) {
+                    if (checker.data[i].equals(o)) {
+                        checker.data[i] = removeFirst();
+                        return true;
+                    }
                 }
             }
+            checker = checker.next;
         }
-        overwriteElements(box);
-        checkLastIsNotNull();
-        return !flg;
-    }
-
-    @Override
-    public boolean removeLastOccurrence(Object o) {
-        if (isEmpty()) {
-            return false;
-        }
-        checkNullInputParameter(o);
-        boolean flg = true;
-        Container<E> box = new Container<>(amountOfElements, null, null);
-        for (Container<E> x = last; x != null; x = x.getPrev()) {
-            for (int i = x.size() - 1; i > -1; i--) {
-                if (o.equals(x.getElementData()[i]) && flg) {
-                    flg = false;
-                    amountOfElements--;
-                } else {
-                    box.add(x.getElementData()[i]);
-                }
-            }
-        }
-        overwriteElements(box);
-        checkLastIsNotNull();
-        return !flg;
-    }
-
-    @Override
-    public boolean add(E e) {
-        addLast(e);
-        return true;
-    }
-
-    @Override
-    public boolean offer(E e) {
-        return offerLast(e);
-    }
-
-    @Override
-    public E remove() {
-        return removeFirst();
-    }
-
-    @Override
-    public E poll() {
-        return pollFirst();
-    }
-
-    @Override
-    public E element() {
-        return getFirst();
-    }
-
-    @Override
-    public E peek() {
-        return peekFirst();
-    }
-
-    @Override
-    public boolean addAll(Collection<? extends E> c) {
-        for (E e: c) {
-            addLast(e);
-        }
-        return true;
-    }
-
-    @Override
-    public void push(E e) {
-        addFirst(e);
-    }
-
-    @Override
-    public E pop() {
-        return removeFirst();
-    }
-
-    @Override
-    public boolean remove(Object o) {
-        return removeFirstOccurrence(o);
-    }
-
-    @Override
-    public boolean contains(Object o) {
-        checkNullInputParameter(o);
-        for (Container<E> x = first; x != null; x = x.getNext()) {
-            for (Object obj : x.getElementData()) {
-                if (o.equals(obj)) {
-                    return true;
-                }
-            }
         }
         return false;
     }
 
     @Override
-    public int size() {
-        return amountOfElements;
-    }
-
-    @Override
-    public Iterator<E> iterator() {
-        return new Iterator<E>() {
-            int cursor = 0; //Положение курсора в контейнере
-            Container<E> container = first;
-
-            @Override
-            public boolean hasNext() {
-                if (cursor < container.size()) {
-                    return true;
-                }
-                if (cursor == container.size()) {
-                    return container.getNext() != null;
-                }
-                return false;
-            }
-
-            @Override
-            public E next() {
-                if (cursor == container.size()) {
-                    if (container.getNext() != null) {
-                        cursor -= container.size();
-                        container = container.getNext();
-                        return next();
-                    } else {
-                        throw new NoSuchElementException();
+    public boolean removeLastOccurrence(Object o) {
+        MyContainer<T> checker = lastContainer;
+        if(getFirst().equals(o)){
+            removeLast();
+            return true;
+        }
+        else {
+        while (checker != null ){
+            for (int i = checker.getDataCount() - 1; i >= 0; i --){
+                if (checker.data[i] != null) {
+                    if (checker.data[i].equals(o)) {
+                        checker.data[i] = removeLast();
+                        return true;
                     }
-                } else {
-                    cursor++;
-                    return container.get(cursor - 1);
                 }
             }
-        };
+            checker = checker.prev;
+        }
+        }
+        return false;
     }
 
     @Override
-    public Iterator<E> descendingIterator() {
-        throw new UnsupportedOperationException();
+    public boolean add(T t) {
+        addLast(t);
+        return false;
     }
 
-    public void printTripletDeque() {
-        for (Container<E> x = first; x != null; x = x.getNext()) {
-            x.printContainer();
-        }
-        System.out.println();
-    }
-
-    private void overwriteElements(Container<E> box) {
-        int j = 0;
-        for (Container<E> x = first; x != null; x = x.getNext()) {
-            for (int i = 0; i < x.size(); i++) {
-                if (i + j < box.size()) {
-                    x.getElementData()[i] = box.get(i + j);
-                } else {
-                    x.getElementData()[i] = null;
-                }
-            }
-            j += x.size();
-        }
-    }
-
-    private void checkNullInputParameter(Object o) throws NullPointerException {
-        if (o == null) {
-            throw new NullPointerException();
-        }
-    }
-
-    private void checkAmountOfElements() throws IllegalStateException {
-        if (amountOfElements == queueVolume) {
-            throw new IllegalStateException();
-        }
-    }
-
-    private void checkLastIsNotNull() {
-        if (last.size() == 0) {
-            Container<E> previous = last.getPrev();
-            previous.setNext(null);
-            last.setPrev(null);
-            last = previous;
+    @Override
+    public boolean offer(T t) {
+        try {
+            addLast(t);
+            return true;
+        }catch (IllegalStateException e){
+            return false;
         }
     }
 
     @Override
-    public boolean isEmpty() {
-        return amountOfElements == 0;
+    public T remove() {
+        return removeFirst();
     }
 
     @Override
-    public void clear() {
-        Container<E> container = new Container<>(initialCapacity, null, null);
-        first = container;
-        last = container;
-        amountOfElements = 0;
+    public T poll() {
+        try {
+            return removeFirst();
+        }catch (NoSuchElementException t){
+            return null;
+        }
+    }
+
+    @Override
+    public T element() {
+        return getFirst();
+    }
+
+    @Override
+    public T peek() {
+        try {
+            return getFirst();
+        }catch (NoSuchElementException e){
+            return null;
+        }
+    }
+
+    @Override
+    public boolean addAll(Collection<? extends T> c) {
+        return false;
     }
 
     @Override
@@ -498,17 +355,86 @@ public class TripletDeque<E> implements Deque<E>, Containerable {
     }
 
     @Override
+    public void clear() {
+        lastContainer=null;
+        firstContainer=null;
+    }
+
+    @Override
+    public void push(T t) {
+        addFirst(t);
+    }
+
+    @Override
+    public T pop() {
+        return removeFirst();
+    }
+
+    @Override
+    public boolean remove(Object o) {
+        return removeFirstOccurrence(o);
+    }
+
+    @Override
     public boolean containsAll(Collection<?> c) {
         return false;
     }
 
     @Override
-    public Object[] toArray() {
-        return new Object[0];
+    public boolean contains(Object o) {
+        for (T t : this) {
+            if (t.equals((T) o)) {
+                return true;
+            }        
+        }
+        return false;
     }
 
     @Override
-    public <T> T[] toArray(T[] a) {
+    public int size() {
+        int size = 0;
+        MyContainer<T> current = this.firstContainer;
+        size+= current.getDataCount();
+        while (current.next != null){
+            current = current.next;
+            size += current.getDataCount();
+        }
+        return size;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        if (size() == 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    @Override
+    public Iterator<T> iterator() {
         return null;
+    }
+
+    @Override
+    public Object[] toArray() {
+        Object[] array = new Object[size()];
+        int i = 0;
+        for( T elem : this){
+            array[i]  = elem;
+            i++;
+        }
+        return array;
+    }
+
+    @Override
+    public <T1> T1[] toArray(T1[] a) {
+        return null;
+    }
+
+    @Override
+    public Iterator<T> descendingIterator() {
+        throw new UnsupportedOperationException("Не реализованный");
     }
 }
