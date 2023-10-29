@@ -1,5 +1,6 @@
 package com.mpei;
 
+import java.util.*;
 import java.util.Collection;
 import java.util.Deque;
 import java.util.Iterator;
@@ -386,6 +387,7 @@ public class TripletDeque<T> implements Deque<T>, Containerable {
         }
         return size;
     }
+    
 
     @Override
     public boolean isEmpty() {
@@ -401,32 +403,37 @@ public class TripletDeque<T> implements Deque<T>, Containerable {
         return new Itor();
     }
     private class Itor implements Iterator<T> {
-        int cursor;
+        int Pointerer = 0;
         MyContainer<T> curretCont = firstContainer;
         MyContainer<T> retCont;
         int dequeCursor;
-        int lastRet = -1; // index of last element returned; -1 if no such
+        int lastRet = -1;
         @Override
         public boolean hasNext() {
             return dequeCursor < size() && size()!=0;
         }
+
         @Override
         public T next() {
             // TODO Auto-generated method stub
             if(hasNext()){
-                if(cursor == 0 && curretCont == firstContainer){
-                    while(curretCont.data[cursor]==null){
-                        cursor++;
+                // if(Pointerer == 0 && curretCont == firstContainer){
+                    while(curretCont.data[Pointerer]==null){
+                        Pointerer++;
+                        if (Pointerer == capacity){
+                            curretCont = curretCont.next;
+                            Pointerer=0;
+                        }
                     }
-                }
-                lastRet = cursor;
+                // }
+                lastRet = Pointerer;
                 retCont = curretCont;
-                if(cursor == capacity-1){
+                if(Pointerer == capacity-1){
                     curretCont = curretCont.next;
-                    cursor =0;
+                    Pointerer = 0;
                     dequeCursor++;
-                } else{
-                    cursor++;
+                } else {
+                    Pointerer++;
                     dequeCursor++;
                 }
                 return (T)retCont.data[lastRet];

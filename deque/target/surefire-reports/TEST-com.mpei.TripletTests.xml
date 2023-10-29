@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.mpei.TripletTests" time="0.096" tests="15" errors="2" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.mpei.TripletTests" time="0.102" tests="15" errors="14" skipped="0" failures="0">
   <properties>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
     <property name="java.specification.version" value="11"/>
@@ -14,7 +14,7 @@
     <property name="os.name" value="Linux"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="/opt/java/11.0.14/lib"/>
-    <property name="sun.java.command" value="/workspaces/TrainJava/deque/target/surefire/surefirebooter18229951168654304338.jar /workspaces/TrainJava/deque/target/surefire 2023-10-29T20-51-44_075-jvmRun1 surefire6040530485730640269tmp surefire_013729356332720288993tmp"/>
+    <property name="sun.java.command" value="/workspaces/TrainJava/deque/target/surefire/surefirebooter5530947006650850961.jar /workspaces/TrainJava/deque/target/surefire 2023-10-29T21-57-13_046-jvmRun1 surefire883115200121158594tmp surefire_017308598199044264493tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/workspaces/TrainJava/deque/target/test-classes:/workspaces/TrainJava/deque/target/classes:/home/codespace/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.2.0/junit-jupiter-engine-5.2.0.jar:/home/codespace/.m2/repository/org/apiguardian/apiguardian-api/1.0.0/apiguardian-api-1.0.0.jar:/home/codespace/.m2/repository/org/junit/platform/junit-platform-engine/1.2.0/junit-platform-engine-1.2.0.jar:/home/codespace/.m2/repository/org/junit/platform/junit-platform-commons/1.2.0/junit-platform-commons-1.2.0.jar:/home/codespace/.m2/repository/org/opentest4j/opentest4j/1.1.0/opentest4j-1.1.0.jar:/home/codespace/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.2.0/junit-jupiter-api-5.2.0.jar:/home/codespace/.m2/repository/org/junit/platform/junit-platform-runner/1.2.0/junit-platform-runner-1.2.0.jar:/home/codespace/.m2/repository/org/junit/platform/junit-platform-launcher/1.2.0/junit-platform-launcher-1.2.0.jar:/home/codespace/.m2/repository/org/junit/platform/junit-platform-suite-api/1.2.0/junit-platform-suite-api-1.2.0.jar:/home/codespace/.m2/repository/junit/junit/4.12/junit-4.12.jar:/home/codespace/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/codespace/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.2.0/junit-jupiter-params-5.2.0.jar:src/test/java/:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="/workspaces/TrainJava/deque/target/surefire/surefirebooter18229951168654304338.jar"/>
+    <property name="surefire.real.class.path" value="/workspaces/TrainJava/deque/target/surefire/surefirebooter5530947006650850961.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="11.0.14.1+1-LTS"/>
     <property name="user.name" value="codespace"/>
@@ -56,27 +56,75 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="55.0"/>
   </properties>
-  <testcase name="testAddLast" classname="com.mpei.TripletTests" time="0"/>
+  <testcase name="testAddLast" classname="com.mpei.TripletTests" time="0.029">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at com.mpei.TripletTests.testAddLast(TripletTests.java:113)
+</error>
+  </testcase>
   <testcase name="testAddNull" classname="com.mpei.TripletTests" time="0"/>
-  <testcase name="addTest2" classname="com.mpei.TripletTests" time="0.022"/>
-  <testcase name="addTest" classname="com.mpei.TripletTests" time="0"/>
-  <testcase name="testIteratorNoMoreItem" classname="com.mpei.TripletTests" time="0.007">
+  <testcase name="addTest2" classname="com.mpei.TripletTests" time="0">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at com.mpei.TripletTests.addTest2(TripletTests.java:42)
+</error>
+  </testcase>
+  <testcase name="addTest" classname="com.mpei.TripletTests" time="0">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at com.mpei.TripletTests.addTest(TripletTests.java:25)
+</error>
+  </testcase>
+  <testcase name="testIteratorNoMoreItem" classname="com.mpei.TripletTests" time="0">
     <error type="java.lang.NullPointerException">java.lang.NullPointerException
 	at com.mpei.TripletTests.testIteratorNoMoreItem(TripletTests.java:224)
 </error>
   </testcase>
-  <testcase name="testRemoveFirst" classname="com.mpei.TripletTests" time="0.002"/>
-  <testcase name="testAddFirst" classname="com.mpei.TripletTests" time="0"/>
-  <testcase name="holeTest" classname="com.mpei.TripletTests" time="0.015"/>
-  <testcase name="testRemoveLast" classname="com.mpei.TripletTests" time="0.001"/>
-  <testcase name="testIsEmptyAfterAddRemoveFirst" classname="com.mpei.TripletTests" time="0"/>
-  <testcase name="removeTest" classname="com.mpei.TripletTests" time="0.003"/>
-  <testcase name="iterTest" classname="com.mpei.TripletTests" time="0.01"/>
-  <testcase name="testIterator" classname="com.mpei.TripletTests" time="0.002">
+  <testcase name="testRemoveFirst" classname="com.mpei.TripletTests" time="0">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at com.mpei.TripletTests.testRemoveFirst(TripletTests.java:145)
+</error>
+  </testcase>
+  <testcase name="testAddFirst" classname="com.mpei.TripletTests" time="0">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at com.mpei.TripletTests.testAddFirst(TripletTests.java:95)
+</error>
+  </testcase>
+  <testcase name="holeTest" classname="com.mpei.TripletTests" time="0.024">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at com.mpei.TripletTests.holeTest(TripletTests.java:257)
+</error>
+  </testcase>
+  <testcase name="testRemoveLast" classname="com.mpei.TripletTests" time="0">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at com.mpei.TripletTests.testRemoveLast(TripletTests.java:169)
+</error>
+  </testcase>
+  <testcase name="testIsEmptyAfterAddRemoveFirst" classname="com.mpei.TripletTests" time="0.002">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at com.mpei.TripletTests.testIsEmptyAfterAddRemoveFirst(TripletTests.java:74)
+</error>
+  </testcase>
+  <testcase name="removeTest" classname="com.mpei.TripletTests" time="0.001">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at com.mpei.TripletTests.removeTest(TripletTests.java:62)
+</error>
+  </testcase>
+  <testcase name="iterTest" classname="com.mpei.TripletTests" time="0.001">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at com.mpei.TripletTests.iterTest(TripletTests.java:51)
+</error>
+  </testcase>
+  <testcase name="testIterator" classname="com.mpei.TripletTests" time="0.001">
     <error type="java.lang.NullPointerException">java.lang.NullPointerException
 	at com.mpei.TripletTests.testIterator(TripletTests.java:194)
 </error>
   </testcase>
-  <testcase name="removeContainerTest" classname="com.mpei.TripletTests" time="0.002"/>
-  <testcase name="testQueueBehavior" classname="com.mpei.TripletTests" time="0.001"/>
+  <testcase name="removeContainerTest" classname="com.mpei.TripletTests" time="0">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at com.mpei.TripletTests.removeContainerTest(TripletTests.java:272)
+</error>
+  </testcase>
+  <testcase name="testQueueBehavior" classname="com.mpei.TripletTests" time="0.001">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at com.mpei.TripletTests.testQueueBehavior(TripletTests.java:246)
+</error>
+  </testcase>
 </testsuite>
