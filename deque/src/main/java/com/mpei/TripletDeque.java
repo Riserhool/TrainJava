@@ -45,6 +45,7 @@ public class TripletDeque<T> implements Deque<T>, Containerable {
         }
 
         public boolean addFirst(T object) {
+            if(size()<= volume){
             if (firstContainer.data[0] != null) {
                 return false;
             }
@@ -63,8 +64,11 @@ public class TripletDeque<T> implements Deque<T>, Containerable {
                         return true;                
             }
         }
+        else throw new IllegalStateException();
+        }
 
         public boolean addLast(T object) {
+            if(size()<=volume){
             if (lastContainer.data[capacity-1] != null) {
                 return false;
             }
@@ -82,21 +86,23 @@ public class TripletDeque<T> implements Deque<T>, Containerable {
                     this.lastIndex = 1;
                     return true; 
         }
+        else throw new IllegalStateException();
+        }
 
         public int getDataCount() {
             int n = lastIndex - iniIndex + 1;
             return n;
         }
     }
+    
+    
 
     @Override
     public void addFirst(T t) {
         if (t == null) {
             throw new NullPointerException();
         }
-        // if (size() > volume) {
-        //     throw new IllegalStateException();
-        // }
+
         if (firstContainer == null) {
             firstContainer = new MyContainer<>();
             lastContainer = firstContainer;
@@ -118,9 +124,7 @@ public class TripletDeque<T> implements Deque<T>, Containerable {
         if (t == null) {
             throw new NullPointerException();
         }
-        // if (size() > volume) {
-        //     throw new IllegalStateException();
-        // }
+
         if (lastContainer == null) {
             firstContainer = new MyContainer<>();
             lastContainer = firstContainer;
@@ -205,19 +209,15 @@ public class TripletDeque<T> implements Deque<T>, Containerable {
 
     @Override
     public T getFirst() {
-        // if(size() == 0){
-        // return null;
-        // }
+
         Object datum = this.firstContainer.data[this.firstContainer.iniIndex - 1];
         return (T)datum;
-        // return (T)firstContainer.data[firstContainer.iniIndex - 1];
+
     }
 
     @Override
     public T getLast() {
-        // if(size() == 0){
-        // return null;
-        // }
+
         Object datum = this.lastContainer.data[this.lastContainer.lastIndex - 1];
         return (T) datum;
 
@@ -379,15 +379,17 @@ public class TripletDeque<T> implements Deque<T>, Containerable {
     @Override
     public int size() {
         int size = 0;
-        MyContainer<T> current = firstContainer;
-        size += current.getDataCount();
-        while (current.next != null) {
-            current = current.next;
+        if(firstContainer!=null){
+            MyContainer<T> current = this.firstContainer;
             size += current.getDataCount();
+            while (current.next != null) {
+                current = current.next;
+                size += current.getDataCount();
+            }
         }
         return size;
     }
-    
+
 
     @Override
     public boolean isEmpty() {
@@ -408,16 +410,21 @@ public class TripletDeque<T> implements Deque<T>, Containerable {
         MyContainer<T> retCont;
         int dequeCursor;
         int lastRet = -1;
+
         @Override
         public boolean hasNext() {
-            return dequeCursor < size() && size()!=0;
+            boolean CheckNext = dequeCursor < size() && size() != 0;
+            return CheckNext;
         }
-
+        @SneakyThrows
         @Override
         public T next() {
             // TODO Auto-generated method stub
-            if(hasNext()){
-                // if(Pointerer == 0 && curretCont == firstContainer){
+            if(hasNext()!=true){
+                throw new NoSuchElementException();
+            }
+            else{
+                if(Pointerer == 0 ){
                     while(curretCont.data[Pointerer]==null){
                         Pointerer++;
                         if (Pointerer == capacity){
@@ -425,23 +432,21 @@ public class TripletDeque<T> implements Deque<T>, Containerable {
                             Pointerer=0;
                         }
                     }
-                // }
+                }
                 lastRet = Pointerer;
                 retCont = curretCont;
+                dequeCursor++;
                 if(Pointerer == capacity-1){
                     curretCont = curretCont.next;
                     Pointerer = 0;
-                    dequeCursor++;
+
                 } else {
                     Pointerer++;
-                    dequeCursor++;
+
                 }
                 return (T)retCont.data[lastRet];
             }
-            else{
-                throw new NoSuchElementException();
-            }
-            // throw new UnsupportedOperationException("Unimplemented method 'next'");
+
         }
     }
 
