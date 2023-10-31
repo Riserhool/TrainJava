@@ -1,0 +1,9 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Mon Jul 20 13:51:28 MSK 2020
+http\://jade.tilab.com/maven/.error=Could not transfer artifact com.tilab.jade\:jade\:pom\:4.5.0 from/to tilab (http\://jade.tilab.com/maven/)\: Connect to jade.tilab.com\:80 [jade.tilab.com/163.162.42.49] failed\: Connection timed out\: connect
+https\://repo.maven.apache.org/maven2/.lastUpdated=1592738512386
+https\://repository.apache.org/content/repositories/releases/.error=
+@default-tilab-http\://jade.tilab.com/maven/.lastUpdated=1592643750145
+https\://jade.tilab.com/maven/.lastUpdated=1595242288080
+https\://repo.maven.apache.org/maven2/.error=
+https\://repository.apache.org/content/repositories/releases/.lastUpdated=1592738512200

@@ -1,0 +1,8 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Thu Nov 05 14:44:08 MSK 2020
+https\://repo.maven.apache.org/maven2/.lastUpdated=1604576648112
+https\://repository.apache.org/content/repositories/releases/.error=
+https\://jade.tilab.com/maven/.error=Could not transfer artifact com.tilab.jade\:jade\:jar\:sources\:4.5.0 from/to tilab (https\://jade.tilab.com/maven/)\: PKIX path building failed\: sun.security.provider.certpath.SunCertPathBuilderException\: unable to find valid certification path to requested target
+https\://repo.maven.apache.org/maven2/.error=
+@default-tilab-https\://jade.tilab.com/maven/.lastUpdated=1604576647870
+https\://repository.apache.org/content/repositories/releases/.lastUpdated=1592644847202
